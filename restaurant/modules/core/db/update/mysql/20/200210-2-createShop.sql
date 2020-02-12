@@ -1,0 +1,1 @@
+create unique index IDX_RESTAURANT_SHOP_UNIQ_NAME on RESTAURANT_SHOP (NAME) ;

@@ -1,0 +1,1 @@
+create unique index IDX_RESTAURANT_USER_UNIQ_NAME on RESTAURANT_USER (NAME) ;

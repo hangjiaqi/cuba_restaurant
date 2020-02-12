@@ -1,0 +1,2 @@
+rename table restaurant_user_order to RESTAURANT_USER_ORDER__U51827 ;
+alter table restaurant_order drop foreign key FK_RESTAURANT_ORDER_ON_USER_ORDER;

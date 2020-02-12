@@ -1,0 +1,1 @@
+drop table if exists RESTAURANT_USER__U00690 cascade ;

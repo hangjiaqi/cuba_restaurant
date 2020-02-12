@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://browseCaption"
+        focusComponent="menuTable"
+        messagesPack="com.company.restaurant.web.screens.menu">
+    <data readOnly="true">
+        <collection id="menusDc"
+                    class="com.company.restaurant.entity.Menu"
+                    view="menu-view_1">
+            <loader id="menusDl">
+                <query>
+                    <![CDATA[select e from restaurant_Menu e ]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="menuTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="menuTable"
+                dataLoader="menusDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="menuTable"
+                    width="100%"
+                    dataContainer="menusDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="shop"/>
+                <column id="menuName"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="menuTable.create"/>
+                <button id="editBtn" action="menuTable.edit"/>
+                <button id="removeBtn" action="menuTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

@@ -1,0 +1,2 @@
+alter table RESTAURANT_MENU add constraint FK_RESTAURANT_MENU_ON_SHOP foreign key (SHOP_ID) references RESTAURANT_SHOP(ID);
+create index IDX_RESTAURANT_MENU_ON_SHOP on RESTAURANT_MENU (SHOP_ID);
