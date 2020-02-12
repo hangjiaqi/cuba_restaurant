@@ -29,7 +29,7 @@
                         <action id="clear" type="picker_clear"/>
                     </actions>
                 </pickerField>
-                <lookupField id="MenusLook" caption="Menus" optionsContainer="menusDc" captionProperty="menuName"/>
+                <lookupField id="menusField" caption="Menus" optionsContainer="menusDc" captionProperty="menuName"/>
             </column>
         </form>
         <groupBox id="menusBox" caption="msg://com.company.restaurant.entity/Order.menus">
@@ -48,8 +48,7 @@
             </table>
         </groupBox>
         <hbox id="editActions" spacing="true">
-            <button id="windowCommitAndCloseButton" action="windowCommitAndClose"
-                    invoke="onWindowCommitAndCloseButtonClick"/>
+            <button  action="windowCommitAndClose"/>
             <button action="windowClose"/>
         </hbox>
     </layout>

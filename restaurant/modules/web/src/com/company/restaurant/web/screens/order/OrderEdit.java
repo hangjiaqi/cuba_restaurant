@@ -7,6 +7,7 @@ import com.haulmont.cuba.core.global.DataManager;
 import com.haulmont.cuba.core.global.Metadata;
 import com.haulmont.cuba.core.global.UserSessionSource;
 import com.haulmont.cuba.gui.ScreenBuilders;
+import com.haulmont.cuba.gui.builders.LookupBuilderProcessor;
 import com.haulmont.cuba.gui.components.*;
 import com.haulmont.cuba.gui.model.CollectionContainer;
 import com.haulmont.cuba.gui.model.CollectionLoader;
@@ -40,7 +41,7 @@ public class OrderEdit extends StandardEditor<Order> {
     CollectionLoader<Menu> menusDl;
 
     @Inject
-    LookupField<Menu> MenusLook;
+    LookupField<Menu> menusField;
 
     @Inject
     Metadata metadata;
@@ -51,6 +52,7 @@ public class OrderEdit extends StandardEditor<Order> {
     @Inject
     UserSessionSource userSessionSource;
 
+
     @Subscribe
     public void onBeforeShow(BeforeShowEvent event) {
         menusDl.setParameter("shop", metadata.create(Shop.class));
@@ -59,6 +61,7 @@ public class OrderEdit extends StandardEditor<Order> {
 
     @Subscribe("shopNameField")
     public void onShopNameFieldValueChange(HasValue.ValueChangeEvent<Shop> event) {
+        menusField.setValue(null);
         menusDl.setParameter("shop", getEditedEntity().getShopName());
         //变更shop name 清空容器
         menuShopDc.setDisconnectedItems(null);
@@ -74,9 +77,11 @@ public class OrderEdit extends StandardEditor<Order> {
         if (menus == null) {
             menus = new HashSet<>();
         }
-        menus.add(MenusLook.getValue());
-        getEditedEntity().setMenus(menus);
-        menuShopDc.setDisconnectedItems(menus);
+        if(menusField.getValue()!=null){
+            menus.add(menusField.getValue());
+            getEditedEntity().setMenus(menus);
+            menuShopDc.setDisconnectedItems(menus);
+        }
     }
 
     @Subscribe
